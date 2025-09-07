@@ -93,6 +93,7 @@
             // 
             // btnListrarIncidentes
             // 
+            btnListrarIncidentes.Enabled = false;
             btnListrarIncidentes.Location = new Point(499, 25);
             btnListrarIncidentes.Margin = new Padding(4, 5, 4, 5);
             btnListrarIncidentes.Name = "btnListrarIncidentes";
@@ -143,7 +144,7 @@
             groupBox5.Controls.Add(nupHIncidente);
             groupBox5.Location = new Point(21, 212);
             groupBox5.Name = "groupBox5";
-            groupBox5.Size = new Size(612, 233);
+            groupBox5.Size = new Size(610, 233);
             groupBox5.TabIndex = 4;
             groupBox5.TabStop = false;
             groupBox5.Text = "Administración de incidentes";
@@ -263,7 +264,7 @@
             groupBox3.Controls.Add(nupMGuardiaDesde);
             groupBox3.Location = new Point(21, 74);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(612, 132);
+            groupBox3.Size = new Size(610, 132);
             groupBox3.TabIndex = 3;
             groupBox3.TabStop = false;
             groupBox3.Text = "Administración de guardias";
@@ -360,7 +361,7 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(677, 634);
+            ClientSize = new Size(673, 634);
             Controls.Add(gbAdministracion);
             Controls.Add(groupBox1);
             Controls.Add(btnCerrar);

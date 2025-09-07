@@ -4,13 +4,13 @@ namespace Actividad3;
 
 public partial class FormPrincipal : Form
 {
-    Comisaria destacamento=new Comisaria();
+    Comisaria destacamento;
 
     public FormPrincipal()
     {
         InitializeComponent();
     }
-        
+
     private void btnAltaComisaria_Click(object sender, EventArgs e)
     {
         Policia juan = new Policia(43344232, "Juan Barrientos", 23);//1
@@ -27,11 +27,12 @@ public partial class FormPrincipal : Form
         cmbNumeroPlaca.Items.Add(ana.NumeroPlaca);
         btnListrarIncidentes.Enabled = true;
         gbAdministracion.Enabled = true;
+        btnAltaComisaria.Enabled = true;
         #endregion
 
         btnAltaComisaria.Enabled = false;
     }
-    
+
     private void btnAsignarGuardias_Click(object sender, EventArgs e)
     {
         if (cmbNumeroPlaca.SelectedItem != null)
@@ -69,7 +70,7 @@ public partial class FormPrincipal : Form
 
     private void btnRegistrarIncidente_Click(object sender, EventArgs e)
     {
-        if (cmbNumeroPlaca.SelectedItem != null && cbxIncidente.SelectedItem!=null)
+        if (cmbNumeroPlaca.SelectedItem != null && cbxIncidente.SelectedItem != null)
         {
             string nroPlacaString = cmbNumeroPlaca.SelectedItem.ToString();
             int nroPlaca = Convert.ToInt32(nroPlacaString);
@@ -99,25 +100,31 @@ public partial class FormPrincipal : Form
         }
         else
         {
-            MessageBox.Show("Verifique la selección de un agente y/o el tipo de incidente","Error");
+            MessageBox.Show("Verifique la selección de un agente y/o el tipo de incidente", "Error");
         }
 
     }
 
     private void btnListrarIncidentes_Click(object sender, EventArgs e)
     {
-        FormVerInicidentes fIncidentes=new FormVerInicidentes();
+        FormVerInicidentes fIncidentes = new FormVerInicidentes();
 
-        for (int idx = 0; idx < destacamento.CantidadIncidentes; idx++)
+        if (destacamento != null && destacamento.CantidadIncidentes > 0)
         {
-            fIncidentes.tbIncidentes.Text += $"\r\n--{idx + 1}---------------------\r\n";
+            for (int idx = 0; idx < destacamento.CantidadIncidentes; idx++)
+            {
+                fIncidentes.tbIncidentes.Text += $"\r\n--{idx + 1}---------------------\r\n";
 
-            Incidente inc = destacamento.VerIncidente(idx);
+                Incidente inc = destacamento.VerIncidente(idx);
 
-            fIncidentes.tbIncidentes.Text += inc.VerDescripcion();
+                fIncidentes.tbIncidentes.Text += inc.VerDescripcion();
+            }
+            fIncidentes.tbIncidentes.Text += $"\r\n-----------------------";
         }
-        fIncidentes.tbIncidentes.Text += $"\r\n-----------------------";
-
+        else
+        {
+            fIncidentes.tbIncidentes.Text += $"No se han registrado incidentes.";
+        }
         fIncidentes.ShowDialog();
     }
 }
