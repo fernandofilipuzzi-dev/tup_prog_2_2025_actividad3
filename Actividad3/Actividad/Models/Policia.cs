@@ -1,23 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Actividad3.Models;
 
-namespace Actividad3.Models
+public class Policia : Persona
 {
-    public class Policia : Persona
+    public int NumeroPlaca { get; private set; }
+            
+    public Policia(int dni, string nombre, int numeroPlaca):base(dni,nombre)
     {
-        public int NumeroPlaca { get; private set; }
-                
-        public Policia(int dni, string nombre, int numeroPlaca):base(dni,nombre)
-        {
-            this.NumeroPlaca = numeroPlaca;
-        }
+        this.NumeroPlaca = numeroPlaca;
+    }
 
-        override public string VerDatos() 
-        {
-            return $"{this.Nombre}(DNI:{this.DNI} - placa:{NumeroPlaca})";
-        }
+    override public string VerDatos() 
+    {
+        return $"{this.Nombre}(DNI:{this.DNI} - placa:{NumeroPlaca})";
     }
 }
